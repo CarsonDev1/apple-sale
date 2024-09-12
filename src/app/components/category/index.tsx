@@ -32,7 +32,7 @@ const Category = () => {
             <div className='flex items-center justify-center absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2'>
                 <Image src={iconSrc} alt='icon-privilege' width={30} height={30} className={iconSize} />
             </div>
-            <span className='text-sm md:text-sm font-semibold text-white line-clamp-3' dangerouslySetInnerHTML={{ __html: text }} />
+            <span className='text-sm md:text-sm font-semibold text-white line-clamp-2 md:line-clamp-3' dangerouslySetInnerHTML={{ __html: text }} />
         </div>
     )
 
@@ -103,7 +103,7 @@ const Category = () => {
                         <div className='flex items-center flex-wrap gap-3'>
                             <div className='py-2 pl-5 md:pl-10 pr-2 bg-red-500 rounded-md relative cursor-pointer' onClick={() => scrollToContent(contentRefs[0])}>
                                 <div className='flex items-center justify-center py-2 px-3 bg-yellow-400 rounded-md absolute top-1/2 -left-2 -translate-y-1/2'>
-                                    <GoStopwatch className='text-xl text-white' />
+                                    <Image src={'/clock.png'} alt='icon-lucky' width={30} height={30} className='size-4 md:size-5' />
                                 </div>
                                 <div className='absolute -top-2 -left-2 -translate-y-1/2 text-yellow-400 bg-red-500 p-1 rounded-md text-[8px]'>09H - 12H</div>
                                 <span className='text-sm md:text-base font-semibold text-yellow-400 ml-5 md:ml-0'>Giờ vàng giá sốc</span>
@@ -116,11 +116,11 @@ const Category = () => {
                         </div>
                         <div className='flex items-center flex-wrap justify-center gap-3'>
                             {[
-                                { text: 'Vòng quay may mắn Lì xì Tết Apple', icon: '/lucky.png', iconSize: 'size-10', onClick: () => scrollToContent(tetAppleRef) },
-                                { text: 'Trả góp <br /> lãi suất 0%', icon: '/0.png', iconSize: 'size-10' },
-                                { text: 'Thu cũ <br /> đổi mới', icon: '/trade.png', iconSize: 'size-10' },
-                                { text: 'ngày đổi trả <br /> miễn phí', icon: '/60days.png', iconSize: 'size-10' },
-                                { text: 'Nhân đôi bảo hành toàn diện', icon: '/shiel.png', iconSize: 'size-10' }
+                                { text: 'Vòng quay may mắn Lì xì Tết Apple', icon: '/lucky.png', iconSize: 'size-6 md:size-10', onClick: () => scrollToContent(tetAppleRef) },
+                                { text: 'Trả góp <br /> lãi suất 0%', icon: '/0.png', iconSize: 'size-6 md:size-10' },
+                                { text: 'Thu cũ <br /> đổi mới', icon: '/trade.png', iconSize: 'size-6 md:size-10' },
+                                { text: 'ngày đổi trả <br /> miễn phí', icon: '/60days.png', iconSize: 'size-6 md:size-10' },
+                                { text: 'Nhân đôi bảo hành toàn diện', icon: '/shiel.png', iconSize: 'size-6 md:size-10' }
                             ].map(item => renderPrivilegeItem(item.text, item.icon, item.iconSize, item.onClick))}
                         </div>
                         {Array.from({ length: 6 }).map((_, index) => renderSwiper(index))}
