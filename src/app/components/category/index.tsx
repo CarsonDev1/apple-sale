@@ -11,11 +11,14 @@ import { IoDiamondOutline } from 'react-icons/io5'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Navigation } from 'swiper/modules'
+import Link from 'next/link'
 
 const Category = () => {
     const contentRefs = Array(6).fill(null).map(() => useRef<HTMLDivElement>(null))
     const tetAppleRef = useRef<HTMLHeadingElement>(null)
     const [showMore, setShowMore] = useState(Array(6).fill(false))
+    const [activeTab, setActiveTab] = useState(0)
+    const [loading, setLoading] = useState(false)
 
     const scrollToContent = (ref: React.RefObject<HTMLElement>) => {
         ref.current?.scrollIntoView({ behavior: 'smooth' })
@@ -55,27 +58,52 @@ const Category = () => {
             <div className={`relative ${index === 2 ? 'pt-[calc(250/1250*100%)]' : 'pt-[calc(160/1250*100%)]'} w-full h-full`}>
                 <Image src={`/content-0${index + 1}.png`} alt={`content-0${index + 1}`} width={1820} height={1200} className='w-full h-full absolute top-0 left-0 object-cover rounded-md' />
             </div>
-            <Swiper
-                spaceBetween={10}
-                slidesPerView={1}
-                className='w-full'
-                speed={1000}
-                navigation={true}
-                modules={[Navigation]}
-            >
-                <div className="swiper-button-prev"></div>
-                <div className="swiper-button-next"></div>
-                <SwiperSlide>
-                    <div className='grid grid-cols-2 xs:grid-col-3 md:grid-cols-4 lg:grid-cols-5 gap-3'>
-                        {renderSwiperSlides(0, showMore[index])}
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className='grid grid-cols-2 xs:grid-col-3 md:grid-cols-4 lg:grid-cols-5 gap-3'>
-                        {renderSwiperSlides(10, showMore[index])}
-                    </div>
-                </SwiperSlide>
-            </Swiper>
+            {index === 0 && (
+                <div className="flex justify-center items-center gap-4">
+                    {['iPhone', 'iPad', 'Macbook', 'Watch', 'AirPods | PK', 'Máy 99%'].map((item, tabIndex) => (
+                        <button
+                            key={tabIndex}
+                            className={`py-2 px-4 rounded-md ${activeTab === tabIndex ? 'bg-yellow-400 text-white' : 'bg-gray-200 text-gray-800'}`}
+                            onClick={() => {
+                                setLoading(true);
+                                setTimeout(() => {
+                                    setActiveTab(tabIndex);
+                                    setLoading(false);
+                                }, 500);
+                            }}
+                        >
+                            {item}
+                        </button>
+                    ))}
+                </div>
+            )}
+            {loading ? (
+                <div className="flex justify-center items-center h-64">
+                    <div className="w-16 h-16 border-4 border-t-4 border-t-yellow-400 border-gray-200 rounded-full animate-spin"></div>
+                </div>
+            ) : (
+                <Swiper
+                    spaceBetween={10}
+                    slidesPerView={1}
+                    className='w-full'
+                    speed={1000}
+                    navigation={true}
+                    modules={[Navigation]}
+                >
+                    <div className="swiper-button-prev"></div>
+                    <div className="swiper-button-next"></div>
+                    <SwiperSlide>
+                        <div className='grid grid-cols-2 xs:grid-col-3 md:grid-cols-4 lg:grid-cols-5 gap-3'>
+                            {renderSwiperSlides(activeTab * 10, showMore[index])}
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div className='grid grid-cols-2 xs:grid-col-3 md:grid-cols-4 lg:grid-cols-5 gap-3'>
+                            {renderSwiperSlides(activeTab * 10 + 10, showMore[index])}
+                        </div>
+                    </SwiperSlide>
+                </Swiper>
+            )}
             {!showMore[index] && (
                 <button className='py-2 px-5 w-max mx-auto bg-yellow-400 rounded-md text-white font-semibold' onClick={() => setShowMore(prev => {
                     const newShowMore = [...prev]
@@ -115,13 +143,44 @@ const Category = () => {
                             <h3 className='text-xl md:text-2xl lg:text-3xl font-medium text-center w-fit'>"5 ĐẶC QUYỀN TỪ MUA HÀNG TẠI BẠCH LONG MOBILE</h3>
                         </div>
                         <div className='flex items-center flex-wrap justify-center gap-3'>
-                            {[
-                                { text: 'Vòng quay may mắn Lì xì Tết Apple', icon: '/lucky.png', iconSize: 'size-6 md:size-10', onClick: () => scrollToContent(tetAppleRef) },
-                                { text: 'Trả góp <br /> lãi suất 0%', icon: '/0.png', iconSize: 'size-6 md:size-10' },
-                                { text: 'Thu cũ <br /> đổi mới', icon: '/trade.png', iconSize: 'size-6 md:size-10' },
-                                { text: 'ngày đổi trả <br /> miễn phí', icon: '/60days.png', iconSize: 'size-6 md:size-10' },
-                                { text: 'Nhân đôi bảo hành toàn diện', icon: '/shiel.png', iconSize: 'size-6 md:size-10' }
-                            ].map(item => renderPrivilegeItem(item.text, item.icon, item.iconSize, item.onClick))}
+                            <div className='text-center py-2 px-5 md:py-4 md:px-10 bg-yellow-400 rounded-md relative w-[calc(20%-0.6rem)] min-w-[150px] cursor-pointer' onClick={() => scrollToContent(tetAppleRef)}>
+                                <div className='flex items-center justify-center absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2'>
+                                    <Image src={'/lucky.png'} alt='icon-privilege' width={30} height={30} className='size-6 md:size-10' />
+                                </div>
+                                <span className='text-sm md:text-sm font-semibold text-white line-clamp-2 md:line-clamp-3' dangerouslySetInnerHTML={{ __html: 'Vòng quay may mắn Lì xì Tết Apple' }} />
+                            </div>
+                            <div className='text-center py-2 px-5 md:py-4 md:px-10 bg-yellow-400 rounded-md relative w-[calc(20%-0.6rem)] min-w-[150px] cursor-pointer'>
+                                <Link href='https://bachlongmobile.com/tra-gop-0-lai-suat/'>
+                                    <div className='flex items-center justify-center absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2'>
+                                        <Image src={'/0.png'} alt='icon-privilege' width={30} height={30} className='size-6 md:size-10' />
+                                    </div>
+                                    <span className='text-sm md:text-sm font-semibold text-white line-clamp-2 md:line-clamp-3' dangerouslySetInnerHTML={{ __html: 'Trả góp <br /> lãi suất 0%' }} />
+                                </Link>
+                            </div>
+                            <div className='text-center py-2 px-5 md:py-4 md:px-10 bg-yellow-400 rounded-md relative w-[calc(20%-0.6rem)] min-w-[150px] cursor-pointer'>
+                                <Link href='https://bachlongmobile.com/renew/'>
+                                    <div className='flex items-center justify-center absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2'>
+                                        <Image src={'/trade.png'} alt='icon-privilege' width={30} height={30} className='size-6 md:size-10' />
+                                    </div>
+                                    <span className='text-sm md:text-sm font-semibold text-white line-clamp-2 md:line-clamp-3' dangerouslySetInnerHTML={{ __html: 'Thu cũ <br /> đổi mới' }} />
+                                </Link>
+                            </div>
+                            <div className='text-center py-2 px-5 md:py-4 md:px-10 bg-yellow-400 rounded-md relative w-[calc(20%-0.6rem)] min-w-[150px] cursor-pointer'>
+                                <Link href='https://bachlongmobile.com/bao-hanh-toan-dien-2024-loi-doi-moi/'>
+                                    <div className='flex items-center justify-center absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2'>
+                                        <Image src={'/60days.png'} alt='icon-privilege' width={30} height={30} className='size-6 md:size-10' />
+                                    </div>
+                                    <span className='text-sm md:text-sm font-semibold text-white line-clamp-2 md:line-clamp-3' dangerouslySetInnerHTML={{ __html: 'ngày đổi trả <br /> miễn phí' }} />
+                                </Link>
+                            </div>
+                            <div className='text-center py-2 px-5 md:py-4 md:px-10 bg-yellow-400 rounded-md relative w-[calc(20%-0.6rem)] min-w-[150px] cursor-pointer'>
+                                <Link href='#'>
+                                    <div className='flex items-center justify-center absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2'>
+                                        <Image src={'/shiel.png'} alt='icon-privilege' width={30} height={30} className='size-6 md:size-10' />
+                                    </div>
+                                    <span className='text-sm md:text-sm font-semibold text-white line-clamp-2 md:line-clamp-3' dangerouslySetInnerHTML={{ __html: 'Nhân đôi bảo hành toàn diện' }} />
+                                </Link>
+                            </div>
                         </div>
                         {Array.from({ length: 6 }).map((_, index) => renderSwiper(index))}
                         <div className="space-y-6 py-20 text-gray-800">
