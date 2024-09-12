@@ -6,7 +6,7 @@ import React, { useRef, useState } from 'react'
 import Image from 'next/image'
 import Section from '../section'
 import Container from '../container'
-import { GoStopwatch } from 'react-icons/go'
+import { GoCheckCircle, GoStopwatch } from 'react-icons/go'
 import { IoDiamondOutline } from 'react-icons/io5'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -184,68 +184,51 @@ const Category = () => {
                         </div>
                         {Array.from({ length: 6 }).map((_, index) => renderSwiper(index))}
                         <div className="space-y-6 py-20 text-gray-800">
-                            <h2 id="tet-apple" ref={tetAppleRef} className="text-3xl font-bold text-center text-red-600">THỂ LỆ</h2>
-                            <p className="text-xl font-semibold text-center text-yellow-500">THỂ LỆ MUA SẮM</p>
-
-                            <div className="space-y-2">
-                                <p className="font-medium">- Thời gian bắt đầu chương trình: Từ ngày 03 - 30/08/2024.</p>
-                                <p className="font-medium">- Chi nhánh áp dụng: Áp dụng toàn bộ hệ thống Bạch Long Mobile.</p>
-                            </div>
-
-                            <div className="space-y-4">
-                                <h3 className="text-2xl font-bold text-red-500">1/ 18 DEAL SHOCK. MEGA SALE MỪNG SINH NHẬT</h3>
-                                <ul className="list-disc list-inside space-y-2">
-                                    <li>Mừng sinh nhật Bạch Long Mobile 18 năm, sẽ có 18 sản phẩm giá cực shock được tung ra để chiêu đãi khách hàng.</li>
-                                    <li>Cùng với hàng loạt sản phẩm hot sẽ được sale tưng bừng mừng sinh nhật.</li>
-                                    <li>Số lượng sản phẩm có hạn, có thể thay đổi theo từng thời điểm chương trình.</li>
-                                    <li>Được áp dụng tất cả các chương trình khuyến mãi hiện đang có tại hệ thống.</li>
-                                </ul>
-                            </div>
-
-                            <div className="space-y-4">
-                                <h3 className="text-2xl font-bold text-red-500">2/ MỪNG SINH NHẬT: 100% MUA LÀ CÓ QUÀ.</h3>
-                                <p>Tất cả các khách hàng đến tham quan mua sắm trong chương trình với tổng hóa đơn từ 5.000.000 sẽ nhận được 1 phần quà sinh nhật cùng với Bạch Long Mobile:</p>
-                                <p className="font-medium">Tặng ngay 1 nón bảo hiểm cao cấp kỷ niệm Bạch Long Mobile 18 năm.</p>
-                                <p className="italic">Số lượng quà tặng có hạn, quý khách hàng hãy nhanh chân đến Bạch Long nhận quà nhé.</p>
-                            </div>
-
-                            <div className="space-y-4">
-                                <h3 className="text-2xl font-bold text-red-500">3/ MỪNG SINH NHẬT: MIỄN PHÍ DI CHUYỂN ĐẾN BẠCH LONG MUA SẮM.</h3>
-                                <p>Duy nhất và độc quyền trong sự kiện sinh nhật lần này, tất cả các khách hàng trong nội thành TP.HCM đến tham quan mua sắm tại hệ thống Bạch Long Mobile di chuyển bằng các hình thức xe công nghệ có hóa đơn thể hiện lộ trình đến cửa hàng Bạch Long Mobile gần nhất, sẽ nhận được ưu đãi:</p>
-                                <ul className="list-disc list-inside space-y-2">
-                                    <li>Hoàn 100% chi phí di chuyển cho khách hàng (tối đã 300.000Đ)</li>
-                                    <li>Áp dụng hoàn tiền cho khách hàng có tổng hóa đơn mua sắm từ 5.000.000</li>
-                                    <li>Quý khách vui lòng cung cấp chứng từ hóa đơn di chuyển có thể hiện điểm đến là Bạch Long Mobile gần nhất để được hoàn tiền.</li>
-                                    <li>Mỗi khách hàng chỉ được hoàn tiền 1 lần trong suốt thời gian chương trình diễn ra.</li>
-                                </ul>
-                            </div>
-
-                            <div className="space-y-4">
-                                <h3 className="text-2xl font-bold text-red-500">4/ MỪNG SINH NHẬT: TRÚNG SIÊU PHẨM GẬP VÀ TRẠM SẠC CAO CẤP</h3>
-                                <p>Duy nhất và độc quyền trong sự kiện sinh nhật lần này, tất cả các khách hàng đến tham quan mua sắm tại hệ thống Bạch Long Mobile có hóa đơn theo thể lệ sau đây:</p>
-                                <ul className="list-disc list-inside space-y-2">
-                                    <li>Hóa đơn mua MÁY từ 5.000.000 {'=>'} Nhận 1 Phiếu Hẹn tham gia vòng quay vật lý trúng thưởng Galaxy Z Flip6 256GB chính hãng.</li>
-                                    <li>Hóa đơn mua PHỤ KIỆN từ 300.000 {'=>'} Nhận 1 Phiếu Hẹn tham gia vòng quay vật lý trúng thưởng Trạm sạc Pisen chính hãng.</li>
-                                    <li>Mỗi số điện thoại khách hàng chỉ được tham gia 1 lần cho 1 giải thưởng.</li>
-                                    <li>Số điện thoại tham gia phải là chính chủ và có mặt tại buổi quay thưởng.</li>
-                                    <li>Thời gian diễn ra Vòng quay vật lý: 09h30, ngày 31/08/2024 tại Bạch Long Mobile Trần Hưng Đạo Q.1 TP.HCM</li>
-                                </ul>
-                            </div>
-
-                            <div className="space-y-4">
-                                <h3 className="text-2xl font-bold text-red-500">5/ DỊCH VỤ HOÀN HẢO: THU CŨ TRỢ GIÁ 5.000.000 | TRẢ GÓP SIÊU TỐC.</h3>
-                                <p className="font-medium">• Đến với hệ thống Bạch Long Mobile, quý khách hàng còn sẽ được tận hưởng các dịch vụ giá trị tiện ích cao cấp, giúp việc sở hữu siêu phẩm của quý khách trở nên dễ dàng hơn:</p>
-                                <ul className="list-disc list-inside space-y-2">
-                                    <li>TRADE-IN THU CŨ ĐỔI MỚI GIÁ CAO NHẤT trợ giá đến 5.000.000</li>
-                                    <li>TRẢ GÓP SIÊU TỐC. LÃI SUẤT 0% nhận máy nhanh. gọn. lẹ</li>
-                                    <li>Trả góp Homepaylater: Giảm thêm 1.250.000</li>
-                                    <li>Trả góp Kredivo: Giảm thêm 700.000</li>
-                                    <li>Trả góp mPos: Giảm thêm 500.000</li>
-                                    <li>Trả góp Muadee: Giảm thêm 150.000</li>
-                                    <li>Thanh toán chuyển khoản 100%: Giảm thêm 300.000</li>
-                                    <li>Giao hàng tận nơi miễn phí</li>
-                                </ul>
-                            </div>
+                            <h2 id="tet-apple" ref={tetAppleRef} className="text-3xl font-bold text-center text-red-600">TẾT APPLE - TẾT LỚN CHƠI LỚN - MÁY TRAO TAY NHẬN QUÀ NGAY</h2>
+                            <p className="font-medium">- Thời gian bắt đầu chương trình:  Từ ngày 15/09 - 31/10/2024.</p>
+                            <p className="font-medium">- Chi nhánh áp dụng: Áp dụng toàn bộ hệ thống Bạch Long Mobile.</p>
+                            <h3 className="text-2xl font-bold text-red-500">1/ TẾT LỚN CHƠI LỚN – MÁY TRAO TAY NHẬN QUÀ NGAY</h3>
+                            <ul className="list-disc list-inside space-y-2">
+                                <li className='mb-1'>Mừng tết Apple ra mắt iPhone 16 Series, để lại thông tin đăng ký <Link className='underline text-blue-500 decoration-blue-500' href='https://bachlongmobile.com/iphone-16-series'>tại đây</Link> để được hỗ trợ nhanh nhất</li>
+                                <li>Giảm giá tất cả các sản phẩm Apple MỚI - CŨ lên đến 50%</li>
+                                <li className='flex flex-col gap-2'><div className='flex items-center gap-2'><GoCheckCircle className='text-green-500' /><span>Với hóa đơn mua iPHONE | iPAD | MACBOOK | WATCH từ 5.000.000 Đồng</span></div> <span className='font-medium text-red-500'>{'=>'} Tặng ngay 1 mũ bảo hiểm và 1 Phiếu hẹn tham gia vòng quay vật lý trúng thưởng iPhone 16 CHÍNH HÃNG trị giá hơn 21 TRIỆU ĐỒNG.</span></li>
+                                <li className='flex flex-col gap-2'><div className='flex items-center gap-2'><GoCheckCircle className='text-green-500' /><span>Hóa đơn mua PHỤ KIỆN APPLE từ 300.000 Đồng</span></div> <span className='font-medium text-red-500'>{'=>'} Nhận 1 Phiếu hẹn tham gia vòng quay vật lý trúng thưởng Trạm sạc Pisen chính hãng trị giá 5 TRIỆU ĐỒNG.</span></li>
+                                                               <li>Tất cả các khách hàng tham gia vòng quay may mắn đều trúng quà 100%</li>
+                                <li>Thời gian diễn ra Vòng quay vật lý: 09h30, ngày 02/11/2024 tại Bạch Long Mobile, 251 - 253 Trần Hưng Đạo Q.1 TP.HCM</li>
+                                <li className='flex flex-col gap-2'><div className='flex items-center gap-2'><GoCheckCircle className='text-green-500' /><span>Hoàn 100% chi phí di chuyển cho khách hàng trong nội thành TP.HCM đến tham quan mua sắm tại hệ thống Bạch Long Mobile bằng các hình thức xe công nghệ (tối đa 300.000Đ)</span></div></li>
+                            </ul>
+                            <h3 className="text-2xl font-bold text-red-500">2/ GIÁ RẺ MUỐN XỈUUU – NGÀNH HÀNG APPLE GIẢM ĐẾN 50%</h3>
+                            <ul className="list-disc list-inside space-y-2">
+                                <li>Bạch Long tung hàng loạt khuyến mãi như:</li>
+                                <li>Giờ vàng giá sốc gồm 25 sản phẩm Apple hàng tuần giảm đến 50% và lì xì lên đến 300.000đ</li>
+                                <li>Giảm đến 30% cho các sản phẩm Apple MỚI và lì xì lên đến 300.000đ khi mua iPhone | iPad | Macbook | Apple Watch | AirPods</li>
+                                <li>Giảm đến 50% cho iPhone Likenew và lì xì lên đến 300.000đ</li>
+                                <li>Phụ kiện Apple giảm đến 70%</li>
+                                <li>Mua 1 tặng 1: Khi mua cường lực màn hình, ốp lưng,… sẽ được tặng 1 Camera Lens trị giá 350.000đ</li>
+                                <li>Combo phụ kiện chính hãng giảm đến 50%</li>
+                                <li>Combo 1: Ốp lưng và Cường lực chính hãng giá chỉ 640.000đ (Giá gốc 1.140.000đ)</li>
+                                <li>Combo 2: Cường lực và Cốc sạc chính hãng giá chỉ 880.000đ (Giá gốc 1.410.000đ)</li>
+                                <li>Combo 3: Ốp lưng, Cường lực và Camera lens chính hãng giá chỉ 890.000đ (Giá gốc 1.650.000đ)</li>
+                                <li>Combo 4: Ốp lưng, Cường, Camera lens và Cốc sạc chính hãng giá chỉ 1.380.000đ (Giá gốc 2.470.000đ)</li>
+                            </ul>
+                            <h3 className="text-2xl font-bold text-red-500">3/ 5 ĐẶC QUYỀN KHI MUA HÀNG TẠI BẠCH LONG MOBILE.</h3>
+                            <ul className="list-disc list-inside space-y-2">
+                                <li>Vòng quay may mắn – Lì xì Tết Apple (Danh sách quà tặng liên hệ tại shop) //có gán link sau này</li>
+                                <li>Trả góp siêu tốc với lãi suất 0% | 0% phụ phí | 0% lợi nhuận //có gán link sau này</li>
+                                <li>Thu cũ đổi mới trợ giá đến 16.000.000 //có gán link sau này</li>
+                                <li>60 Ngày đổi trả miễn phí //có gán link sau này</li>
+                                <li>Nhân đôi (X2) bảo hành toàn diện //có gán link sau này</li>
+                            </ul>
+                            <h3 className="text-2xl font-bold text-red-500">4/ CÁC DỊCH VỤ ƯU ĐÃI THANH TOÁN, TRẢ GÓP, HOÀN TIỀN,GIAO HÀNG.</h3>
+                            <p>Đến với hệ thống Bạch Long Mobile, quý khách hàng còn sẽ được tận hưởng các dịch vụ giá trị tiện ích cao cấp, giúp việc sở hữu siêu phẩm của quý khách trở nên dễ dàng hơn:</p>
+                            <ul className="list-disc list-inside space-y-2">
+                                <li>Trả góp HD Saison | Mcredit | Home credit | Shinhang | Homepaylater | Kredivo | mPos | Muadee : Giảm thêm đến 1.000.000** <Link className='underline text-blue-500 decoration-blue-500' href='https://bachlongmobile.com/promotion/'>tại đây</Link></li>
+                                <li>Hoàn tiền 300K khi mua kèm BHTD + chuyển khoản 100% giá trị (áp dụng sản phẩm từ 15 triệu trở lên) //có gán link sau này</li>
+                                <li>Cà thẻ MIỄN PHÍ 100% với Visa, MasterCard //có gán link sau này</li>
+                                <li>Giao hàng Online tận nhà MIỄN PHÍ 100% cước vận chuyển //có gán link sau này</li>
+                            </ul>
+                            <p className="text-center font-bold">TIN KHUYẾN MÃI TỪ BẠCH LONG MOBILE  - HỆ THỐNG UỶ QUYỀN CHÍNH HÃNG APPLE</p>
+                            <p className="text-center">***Mọi chi tiết thắc mắc  xin quý khách liên hệ: 1900.63.64.69 - 1900.63.69.81</p>
                         </div>
                     </div>
                 </Container>
