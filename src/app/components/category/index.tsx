@@ -25,7 +25,7 @@ const Category = () => {
     }
 
     const renderCategoryButton = (text: string, index: number) => (
-        <div className='py-2 px-5 md:px-10 bg-yellow-400 rounded-md cursor-pointer' onClick={() => scrollToContent(contentRefs[index])}>
+        <div className='py-2 px-5 md:px-10 bg-yellow-400 rounded-md cursor-pointer text-center' onClick={() => scrollToContent(contentRefs[index])}>
             <span className='text-sm md:text-base font-semibold text-white'>{text}</span>
         </div>
     )
