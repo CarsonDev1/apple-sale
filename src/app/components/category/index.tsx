@@ -59,22 +59,24 @@ const Category = () => {
                 <Image src={`/content-0${index + 1}.png`} alt={`content-0${index + 1}`} width={1820} height={1200} className='w-full h-full absolute top-0 left-0 object-cover rounded-md' />
             </div>
             {index === 0 && (
-                <div className="flex justify-center items-center gap-4">
-                    {['iPhone', 'iPad', 'Macbook', 'Watch', 'AirPods | PK', 'Máy 99%'].map((item, tabIndex) => (
-                        <button
-                            key={tabIndex}
-                            className={`py-2 px-4 rounded-md ${activeTab === tabIndex ? 'bg-yellow-400 text-white' : 'bg-gray-200 text-gray-800'}`}
-                            onClick={() => {
-                                setLoading(true);
-                                setTimeout(() => {
-                                    setActiveTab(tabIndex);
-                                    setLoading(false);
-                                }, 500);
-                            }}
-                        >
-                            {item}
-                        </button>
-                    ))}
+                <div className='mx-auto'>
+                    <div className="flex flex-wrap items-center gap-4">
+                        {['iPhone', 'iPad', 'Macbook', 'Watch', 'AirPods | PK', 'Máy 99%'].map((item, tabIndex) => (
+                            <button
+                                key={tabIndex}
+                                className={`py-2 px-4 rounded-md ${activeTab === tabIndex ? 'bg-yellow-400 text-white' : 'bg-gray-200 text-gray-800'}`}
+                                onClick={() => {
+                                    setLoading(true);
+                                    setTimeout(() => {
+                                        setActiveTab(tabIndex);
+                                        setLoading(false);
+                                    }, 500);
+                                }}
+                            >
+                                {item}
+                            </button>
+                        ))}
+                    </div>
                 </div>
             )}
             {loading ? (
@@ -193,7 +195,7 @@ const Category = () => {
                                 <li>Giảm giá tất cả các sản phẩm Apple MỚI - CŨ lên đến 50%</li>
                                 <li className='flex flex-col gap-2'><div className='flex items-center gap-2'><GoCheckCircle className='text-green-500' /><span>Với hóa đơn mua iPHONE | iPAD | MACBOOK | WATCH từ 5.000.000 Đồng</span></div> <span className='font-medium text-red-500'>{'=>'} Tặng ngay 1 mũ bảo hiểm và 1 Phiếu hẹn tham gia vòng quay vật lý trúng thưởng iPhone 16 CHÍNH HÃNG trị giá hơn 21 TRIỆU ĐỒNG.</span></li>
                                 <li className='flex flex-col gap-2'><div className='flex items-center gap-2'><GoCheckCircle className='text-green-500' /><span>Hóa đơn mua PHỤ KIỆN APPLE từ 300.000 Đồng</span></div> <span className='font-medium text-red-500'>{'=>'} Nhận 1 Phiếu hẹn tham gia vòng quay vật lý trúng thưởng Trạm sạc Pisen chính hãng trị giá 5 TRIỆU ĐỒNG.</span></li>
-                                                               <li>Tất cả các khách hàng tham gia vòng quay may mắn đều trúng quà 100%</li>
+                                <li>Tất cả các khách hàng tham gia vòng quay may mắn đều trúng quà 100%</li>
                                 <li>Thời gian diễn ra Vòng quay vật lý: 09h30, ngày 02/11/2024 tại Bạch Long Mobile, 251 - 253 Trần Hưng Đạo Q.1 TP.HCM</li>
                                 <li className='flex flex-col gap-2'><div className='flex items-center gap-2'><GoCheckCircle className='text-green-500' /><span>Hoàn 100% chi phí di chuyển cho khách hàng trong nội thành TP.HCM đến tham quan mua sắm tại hệ thống Bạch Long Mobile bằng các hình thức xe công nghệ (tối đa 300.000Đ)</span></div></li>
                             </ul>
