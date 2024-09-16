@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/no-unescaped-entities */
 'use client'
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import Image from 'next/image'
 import Section from '../section'
 import Container from '../container'
@@ -19,6 +19,31 @@ const Category = () => {
     const [showMore, setShowMore] = useState(Array(6).fill(false))
     const [activeTab, setActiveTab] = useState(0)
     const [loading, setLoading] = useState(false)
+    const [countdown, setCountdown] = useState(0)
+
+    useEffect(() => {
+        const targetTime = 1 * 60 * 60 + 39 * 60 + 45;
+        setCountdown(targetTime);
+
+        const interval = setInterval(() => {
+            setCountdown(prev => {
+                if (prev <= 0) {
+                    clearInterval(interval);
+                    return 0;
+                }
+                return prev - 1;
+            });
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, []);
+
+    const formatTime = (seconds: number) => {
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
+        const secs = seconds % 60;
+        return `${String(hours).padStart(2, '0')}h:${String(minutes).padStart(2, '0')}p:${String(secs).padStart(2, '0')}s`;
+    };
 
     const scrollToContent = (ref: React.RefObject<HTMLElement>) => {
         ref.current?.scrollIntoView({ behavior: 'smooth' })
@@ -41,11 +66,12 @@ const Category = () => {
 
     const renderSwiperSlides = (startIndex: number, showMore: boolean) => (
         Array.from({ length: showMore ? 10 : 5 }).map((_, index) => (
-            <div key={index + startIndex} className='bg-white rounded-lg shadow-md p-4 h-full flex flex-col justify-between transition-transform duration-1000 ease-in-out'>
+            <div key={index + startIndex} className='bg-white rounded-lg shadow-md p-6 h-full flex flex-col justify-between transition-transform duration-1000 ease-in-out relative'>
+                <Image src='/frame-product.png' width={500} height={500} alt='frame-product' className='absolute w-full -top-20 left-0 h-full z-10' />
                 <div className='relative pb-40'>
                     <Image src={`/product.webp`} alt={`iPhone ${index + startIndex + 1}`} width={500} height={500} className='w-full h-full absolute top-0 left-0 object-cover rounded-md' />
                 </div>
-                <div>
+                <div className='z-10'>
                     <h3 className='text-lg font-semibold mt-2'>iPhone 16 Pro Max</h3>
                     <p className='text-red-500 font-bold text-xl'>29,990,000 VND</p>
                 </div>
@@ -61,21 +87,28 @@ const Category = () => {
             {index === 0 && (
                 <div className='mx-auto'>
                     <div className="flex flex-wrap items-center gap-4">
-                        {['iPhone', 'iPad', 'Macbook', 'Watch', 'AirPods | PK', 'Máy 99%'].map((item, tabIndex) => (
-                            <button
-                                key={tabIndex}
-                                className={`py-2 px-4 rounded-md ${activeTab === tabIndex ? 'bg-yellow-400 text-white' : 'bg-gray-200 text-gray-800'}`}
-                                onClick={() => {
-                                    setLoading(true);
-                                    setTimeout(() => {
-                                        setActiveTab(tabIndex);
-                                        setLoading(false);
-                                    }, 500);
-                                }}
-                            >
-                                {item}
-                            </button>
-                        ))}
+                        <div className='flex items-center flex-col gap-4'>
+                            <div className='text-center text-xl w-full py-3'>
+                                <p className='mt-2 text-lg md:text-xl'>Thời gian khuyến mãi kết thúc sau: <span className='text-4xl font-extrabold text-red-600'>{formatTime(countdown)}</span></p>
+                            </div>
+                            <div className='flex gap-4'>
+                                {['iPhone', 'iPad', 'Macbook', 'Watch', 'AirPods | PK', 'Máy 99%'].map((item, tabIndex) => (
+                                    <button
+                                        key={tabIndex}
+                                        className={`py-2 px-4 rounded-md ${activeTab === tabIndex ? 'bg-yellow-400 text-white' : 'bg-gray-200 text-gray-800'}`}
+                                        onClick={() => {
+                                            setLoading(true);
+                                            setTimeout(() => {
+                                                setActiveTab(tabIndex);
+                                                setLoading(false);
+                                            }, 500);
+                                        }}
+                                    >
+                                        {item}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </div>
             )}
